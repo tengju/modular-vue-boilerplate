@@ -30,7 +30,7 @@ export default new Vuex.Store<RootState>({
             const user = {
               name: "Tomiko nadazuke",
               age: 23,
-              rights: ["Base", "Upload", "Download"]
+              rights: ["Base", "Upload", "Download", "Payroll"]
             };
             commit("setUser", user);
             resolve();
