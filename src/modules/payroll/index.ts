@@ -4,7 +4,7 @@ import store from "./store";
 import Settings from "./settings";
 
 export default {
-  name: Settings.moduleName,
+  ...Settings,
   router,
   store
 };

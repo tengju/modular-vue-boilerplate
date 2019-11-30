@@ -1,4 +1,4 @@
-import loadModule from "./loadModule.helper";
+import { fetchModule } from "./fetchModule.helper";
 import loadView from "./loadView.helper";
 
-export default { loadView, loadModule };
+export default { loadView, fetchModule };

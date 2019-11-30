@@ -1,19 +1,24 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import VueRouter, { RouteConfig } from "vue-router";
 import loadView from "@/helpers/lazyload/loadView.helper";
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes: RouteConfig[] = [
   {
     path: "/",
     name: "home",
     component: loadView("Home")
   },
   {
-    path: "*",
+    path: "/404",
     name: "notFound",
     component: loadView("404")
+  },
+  {
+    path: "/403",
+    name: "Forbidden",
+    component: loadView("403")
   }
 ];
 

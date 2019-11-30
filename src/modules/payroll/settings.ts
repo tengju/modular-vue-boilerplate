@@ -1,3 +1,4 @@
 export default {
-  moduleName: "payroll"
+  name: "payroll",
+  path: "/payroll"
 };

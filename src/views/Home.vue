@@ -2,8 +2,13 @@
   <div class="home">
     <nav>
       <ul>
-        <li v-for="right in user.rights" :key="right" style="list-style: none;">
-          <a @click.prevent="openModule(right)">
+        <li
+          v-for="right in user.rights"
+          :key="right"
+          style="list-style: none;"
+          class="link"
+        >
+          <a @click.prevent="$router.push('/' + right)">
             {{ right }}
           </a>
         </li>
@@ -15,22 +20,25 @@
 </template>
 
 <script>
-import loadModule from "@/helpers/lazyload/loadModule.helper";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "home",
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
+  computed: mapState({
+    user: state => state.user
+  }),
   methods: {
-    async openModule(right) {
-      await this.$store.dispatch("getUser");
-      this.$store.dispatch("setLoading", true);
-      await loadModule(right.toLowerCase());
-      this.$router.push("/" + right);
-      this.$store.dispatch("setLoading", false);
-    }
+    ...mapActions(["openModule"])
   }
 };
 </script>
+
+<style lang="scss">
+.link {
+  list-style: none;
+  cursor: pointer;
+  &:hover {
+    color: orange;
+    text-decoration: underline;
+  }
+}
+</style>

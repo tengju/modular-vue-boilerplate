@@ -1,6 +1,17 @@
 <template>
   <div class="home">
     THIS IS PAYROLLLIST
+    <br />
+    <ul>
+      <li
+        v-for="p in payroll"
+        :key="p.id"
+        class="link"
+        @click="goToPayroll(p.id)"
+      >
+        {{ p.type }}
+      </li>
+    </ul>
     {{ JSON.stringify(payroll) }}
   </div>
 </template>
@@ -14,11 +25,14 @@ export default {
   },
   computed: {
     payroll() {
-      return this.$store.state[Settings.moduleName].payroll;
+      return this.$store.state[Settings.name].payroll;
     }
   },
   methods: {
-    ...mapActions({ getPayroll: Settings.moduleName + "/getPayroll" })
+    ...mapActions({ getPayroll: Settings.name + "/getPayroll" }),
+    goToPayroll(id) {
+      this.$router.push({ name: "PayrollSingle", params: { id } });
+    }
   }
 };
 </script>

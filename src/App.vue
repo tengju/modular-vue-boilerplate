@@ -7,13 +7,12 @@
 
 <script>
 import LoadingScreen from "@/components/LoadingScreen";
+import { mapState } from "vuex";
 export default {
   components: { LoadingScreen },
-  computed: {
-    loading() {
-      return this.$store.state.loading;
-    }
-  }
+  computed: mapState({
+    loading: state => state.loading
+  })
 };
 </script>
 
