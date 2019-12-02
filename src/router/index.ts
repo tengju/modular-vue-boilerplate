@@ -1,23 +1,24 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import VueRouter, { RouteConfig } from "vue-router";
+import loadView from "@/helpers/lazyload/loadView.helper";
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes: RouteConfig[] = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: loadView("Home")
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/404",
+    name: "notFound",
+    component: loadView("404")
+  },
+  {
+    path: "/403",
+    name: "Forbidden",
+    component: loadView("403")
   }
 ];
 

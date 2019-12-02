@@ -1,18 +1,44 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <nav>
+      <ul>
+        <li
+          v-for="right in user.rights"
+          :key="right"
+          style="list-style: none;"
+          class="link"
+        >
+          <a @click.prevent="$router.push('/' + right)">
+            {{ right }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+    Welcome {{ user.name }}
+    <br />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import { mapActions, mapState } from "vuex";
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  computed: mapState({
+    user: state => state.user
+  }),
+  methods: {
+    ...mapActions(["openModule"])
   }
 };
 </script>
+
+<style lang="scss">
+.link {
+  list-style: none;
+  cursor: pointer;
+  &:hover {
+    color: orange;
+    text-decoration: underline;
+  }
+}
+</style>
